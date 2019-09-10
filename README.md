@@ -9,3 +9,6 @@ Yii2 module for language selection
         ],
 
 * Add 'lang' to web.php 'bootstrap' section
+* Add this to your layout to show language switch:
+
+    `echo LanguageSelectorWidget::widget();`
