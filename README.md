@@ -7,3 +7,5 @@ Yii2 module for language selection
         'lang' => [
             'class' => 'app\modules\lang\Module'
         ],
+
+* Add 'lang' to web.php 'bootstrap' section
