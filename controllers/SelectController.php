@@ -35,5 +35,12 @@ class SelectController extends Controller
             'expire' => time() + 3600 * 24 * 30,
         ]);
         Yii::$app->response->cookies->add($calendarCookie);
+
+        $dateFormatCookie = new Cookie([
+            'name' => 'dateFormat',
+            'value' => Yii::$app->params['formattedLanguages'][$language]['dateFormat'],
+            'expire' => time() + 3600 * 24 * 30,
+        ]);
+        Yii::$app->response->cookies->add($dateFormatCookie);
     }
 }

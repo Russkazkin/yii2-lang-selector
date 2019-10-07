@@ -35,6 +35,8 @@ class Module extends \yii\base\Module implements BootstrapInterface
         $preferredLanguage = isset($app->request->cookies['language']) ? (string)$app->request->cookies['language'] : null;
         $preferredLocale = isset($app->request->cookies['locale']) ? (string)$app->request->cookies['locale'] : null;
         $preferredCalendar = isset($app->request->cookies['calendar']) ? (string)$app->request->cookies['calendar'] : null;
+        $preferredDateFormat = isset($app->request->cookies['dateFormat']) ? (string)$app->request->cookies['dateFormat'] : null;
+
 
         if (empty($preferredLanguage)) {
             $preferredLanguage = $app->request->getPreferredLanguage($this->supportedLanguages);
@@ -42,5 +44,6 @@ class Module extends \yii\base\Module implements BootstrapInterface
         $app->language = $preferredLanguage;
         $app->formatter->locale = $preferredLocale;
         $app->formatter->calendar = (int)$preferredCalendar;
+        $app->formatter->dateFormat = $preferredDateFormat;
     }
 }
