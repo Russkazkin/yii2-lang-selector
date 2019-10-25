@@ -2,6 +2,7 @@
 
 namespace app\modules\lang;
 
+use Yii;
 use yii\base\Application;
 use yii\base\BootstrapInterface;
 
@@ -14,7 +15,6 @@ class Module extends \yii\base\Module implements BootstrapInterface
      * {@inheritdoc}
      */
     public $controllerNamespace = 'app\modules\lang\controllers';
-    public $supportedLanguages = [];
 
     /**
      * {@inheritdoc}
@@ -32,15 +32,11 @@ class Module extends \yii\base\Module implements BootstrapInterface
      */
     public function bootstrap($app)
     {
-        $preferredLanguage = isset($app->request->cookies['language']) ? (string)$app->request->cookies['language'] : null;
-        $preferredLocale = isset($app->request->cookies['locale']) ? (string)$app->request->cookies['locale'] : null;
-        $preferredCalendar = isset($app->request->cookies['calendar']) ? (string)$app->request->cookies['calendar'] : null;
-        $preferredDateFormat = isset($app->request->cookies['dateFormat']) ? (string)$app->request->cookies['dateFormat'] : null;
+        $preferredLanguage = isset($app->request->cookies['language']) ? (string)$app->request->cookies['language'] : $app->language;
+        $preferredLocale = isset($app->request->cookies['locale']) ? (string)$app->request->cookies['locale'] : $app->params['formattedLanguages'][$preferredLanguage]['locale'];
+        $preferredCalendar = isset($app->request->cookies['calendar']) ? (string)$app->request->cookies['calendar'] : $app->params['formattedLanguages'][$preferredLanguage]['calendar'];
+        $preferredDateFormat = isset($app->request->cookies['dateFormat']) ? (string)$app->request->cookies['dateFormat'] : $app->params['formattedLanguages'][$preferredLanguage]['dateFormat'];
 
-
-        if (empty($preferredLanguage)) {
-            $preferredLanguage = $app->request->getPreferredLanguage($this->supportedLanguages);
-        }
         $app->language = $preferredLanguage;
         $app->formatter->locale = $preferredLocale;
         $app->formatter->calendar = (int)$preferredCalendar;
