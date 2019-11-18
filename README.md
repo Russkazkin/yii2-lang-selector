@@ -5,8 +5,11 @@ Yii2 module for language selection
 * Add this to web.php 'modules' section:
 
         'lang' => [
-            'class' => 'app\modules\lang\Module'
-        ],
+                    'class' => 'app\modules\lang\Module',
+                    'components' => [
+                        'dateManager' => \app\modules\lang\components\LangDateComponent::class,
+                    ]
+                ],
 
 * Add 'lang' to web.php 'bootstrap' section
 * Add this to your layout to show language switch:
