@@ -2,7 +2,6 @@
 
 namespace app\modules\lang;
 
-use app\modules\lang\components\LangDateComponent;
 use Yii;
 use yii\base\Application;
 use yii\base\BootstrapInterface;
@@ -24,7 +23,7 @@ class Module extends \yii\base\Module implements BootstrapInterface
     {
         parent::init();
 
-        $this->components['lang-date'] = ['class' => LangDateComponent::class];
+        // custom initialization code goes here
     }
 
     /**
