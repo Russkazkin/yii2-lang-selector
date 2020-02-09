@@ -41,4 +41,9 @@ class LangDateBehavior extends Behavior
     {
         return Yii::$app->formatter->asDate($this->owner->{$this->attributeName});
     }
+
+    public function timestampToDatetime()
+    {
+        return Yii::$app->formatter->asDatetime($this->owner->{$this->attributeName});
+    }
 }
